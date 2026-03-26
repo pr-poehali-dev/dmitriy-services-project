@@ -149,6 +149,12 @@ export default function Index() {
               >
                 Наши работы
               </button>
+              <a
+                href="/cleaning"
+                className="border border-[#d4870a]/60 hover:border-[#d4870a] text-[#d4870a] font-oswald text-sm tracking-[0.15em] uppercase px-8 py-4 transition-colors duration-200 text-center"
+              >
+                Демонтаж и скос
+              </a>
             </div>
           </div>
         </div>

@@ -4,8 +4,12 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 97%;
+    --foreground: 20 10% 10%;
+
+    --brand-dark: 20 10% 8%;
+    --brand-ochre: 38 85% 48%;
+    --brand-light: 0 0% 96%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;

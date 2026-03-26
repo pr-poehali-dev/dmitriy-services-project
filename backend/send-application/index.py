@@ -3,10 +3,11 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import psycopg2
 
 
 def handler(event: dict, context) -> dict:
-    """Отправка заявки с сайта на email d4505507@gmail.com"""
+    """Отправка заявки с сайта на email и сохранение в БД"""
     cors_headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -30,6 +31,16 @@ def handler(event: dict, context) -> dict:
             "body": json.dumps({"error": "Имя и телефон обязательны"}),
         }
 
+    conn = psycopg2.connect(os.environ["DATABASE_URL"])
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO t_p84599805_dmitriy_services_pro.applications (name, phone, address, comment, site) VALUES (%s, %s, %s, %s, %s)",
+        (name, phone, address or None, comment or None, site or None),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
     to_email = "d4505507@gmail.com"
     from_email = "d4505507@gmail.com"
     smtp_password = os.environ.get("SMTP_PASSWORD", "")
@@ -48,15 +59,15 @@ def handler(event: dict, context) -> dict:
     </div>
     """
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = subject
-    msg["From"] = from_email
-    msg["To"] = to_email
-    msg.attach(MIMEText(html_body, "html"))
-
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login(from_email, smtp_password)
-        server.sendmail(from_email, to_email, msg.as_string())
+    if smtp_password:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = from_email
+        msg["To"] = to_email
+        msg.attach(MIMEText(html_body, "html"))
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(from_email, smtp_password)
+            server.sendmail(from_email, to_email, msg.as_string())
 
     return {
         "statusCode": 200,

@@ -81,7 +81,7 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1a1714]/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <span className="font-oswald text-xl font-bold text-white tracking-widest uppercase">
-            Строй<span className="text-[#d4870a]">Мастер</span>
+            Голубничий<span className="text-[#d4870a]"> Д.Н.</span>
           </span>
           <div className="hidden md:flex gap-8">
             {NAV_LINKS.map((l) => (
@@ -245,8 +245,9 @@ export default function Index() {
               <div className="space-y-5">
                 {[
                   { icon: "Phone", text: "+7 (999) 000-00-00" },
-                  { icon: "MapPin", text: "Работаем по всему региону" },
+                  { icon: "MapPin", text: "Свердловская область" },
                   { icon: "Clock", text: "Пн–Вс, 8:00–20:00" },
+                  { icon: "BadgeCheck", text: "Самозанятый · ИНН 661914015077" },
                 ].map((c) => (
                   <div key={c.text} className="flex items-center gap-3">
                     <Icon name={c.icon} size={18} className="text-[#d4870a] shrink-0" />
@@ -346,9 +347,9 @@ export default function Index() {
       <footer className="bg-[#0f0d0b] py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="font-oswald text-white/40 text-sm tracking-widest uppercase">
-            Строй<span className="text-[#d4870a]/60">Мастер</span> © 2024
+            Голубничий Д.Н. <span className="text-[#d4870a]/60">© 2026</span>
           </span>
-          <span className="text-white/30 text-xs font-golos">Профессиональный демонтаж и строительство</span>
+          <span className="text-white/30 text-xs font-golos">Самозанятый · ИНН 661914015077</span>
         </div>
       </footer>
     </div>

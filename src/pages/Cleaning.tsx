@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
   { label: "Главная", href: "#home" },
   { label: "Услуги", href: "#services" },
+  { label: "Прайс", href: "#price" },
   { label: "Портфолио", href: "#portfolio" },
   { label: "Контакты", href: "#contacts" },
 ];
@@ -32,6 +33,47 @@ const SERVICES = [
     title: "Расчистка участков",
     desc: "Уборка старых конструкций, пней и растительности. Приведём участок в порядок.",
     price: "от 8 000 ₽",
+  },
+];
+
+const PRICE_SECTIONS = [
+  {
+    title: "Покраска",
+    icon: "Paintbrush",
+    rows: [
+      { name: "Сплошные поверхности (забор, стена, фасад)", unit: "м²", price: "от 200 ₽" },
+      { name: "Решётчатые заборы, ворота", unit: "м²", price: "от 250 ₽" },
+      { name: "Ограждение клумбы", unit: "пог. м", price: "от 500 ₽" },
+      { name: "Скамейка парковая", unit: "шт", price: "от 1 500 ₽" },
+      { name: "Урна металлическая", unit: "шт", price: "от 800 ₽" },
+      { name: "Качели садовые", unit: "шт", price: "2 000 – 6 000 ₽" },
+      { name: "Беседка / веранда", unit: "шт", price: "6 000 – 18 000 ₽" },
+      { name: "Бытовка / хозблок", unit: "шт", price: "5 000 – 12 000 ₽" },
+      { name: "Турник / брусья", unit: "шт", price: "от 1 500 ₽" },
+      { name: "Детский игровой комплекс", unit: "шт", price: "договорная" },
+    ],
+  },
+  {
+    title: "Демонтаж",
+    icon: "Hammer",
+    rows: [
+      { name: "Старое строение (дерево)", unit: "м²", price: "от 400 ₽" },
+      { name: "Сгоревшее строение", unit: "м²", price: "от 700 ₽" },
+      { name: "Фундамент", unit: "м³", price: "от 1 200 ₽" },
+      { name: "Забор / ограждение", unit: "пог. м", price: "от 300 ₽" },
+      { name: "Теплица (поликарбонат)", unit: "шт", price: "4 000 – 10 000 ₽" },
+      { name: "Теплица (стекло / плёнка)", unit: "шт", price: "3 000 – 6 000 ₽" },
+    ],
+  },
+  {
+    title: "Покос, спил",
+    icon: "Shovel",
+    rows: [
+      { name: "Покос травы (газон, участок)", unit: "сотка", price: "от 500 ₽" },
+      { name: "Покос травы (запущенный)", unit: "сотка", price: "от 800 ₽" },
+      { name: "Спил небольшого дерева (до 30 см)", unit: "шт", price: "от 1 500 ₽" },
+      { name: "Сбор и складирование скошенного", unit: "участок", price: "от 1 000 ₽" },
+    ],
   },
 ];
 
@@ -207,6 +249,60 @@ export default function Cleaning() {
                 <div className="font-oswald text-[#d4870a] text-sm tracking-wider">{s.price}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICE */}
+      <section id="price" className="py-24 bg-[#1a1714]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mb-14">
+            <div className="w-12 h-0.5 bg-[#d4870a] mb-4" />
+            <h2 className="font-oswald text-4xl sm:text-5xl font-bold text-white tracking-tight">
+              Прайс-лист <span className="text-[#d4870a]">2026</span>
+            </h2>
+            <p className="text-white/40 font-golos text-sm mt-2">Окончательная стоимость определяется после выезда на объект</p>
+          </div>
+          <div className="space-y-10">
+            {PRICE_SECTIONS.map((section) => (
+              <div key={section.title}>
+                <div className="flex items-center gap-3 mb-4">
+                  <Icon name={section.icon} size={20} className="text-[#d4870a]" />
+                  <h3 className="font-oswald text-2xl font-semibold text-white tracking-wide uppercase">{section.title}</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left text-white/40 text-xs font-golos uppercase tracking-wider py-2 pr-4">Объект</th>
+                        <th className="text-left text-white/40 text-xs font-golos uppercase tracking-wider py-2 pr-4 whitespace-nowrap">Единица</th>
+                        <th className="text-right text-white/40 text-xs font-golos uppercase tracking-wider py-2 whitespace-nowrap">Цена</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.rows.map((row, i) => (
+                        <tr key={i} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                          <td className="text-white/80 font-golos text-sm py-3 pr-4">{row.name}</td>
+                          <td className="text-white/40 font-golos text-sm py-3 pr-4 whitespace-nowrap">{row.unit}</td>
+                          <td className="text-[#d4870a] font-oswald text-sm py-3 text-right whitespace-nowrap">{row.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-t border-white/10 pt-8">
+            <p className="text-white/40 font-golos text-sm">Есть вопросы по стоимости? Напишите нам в ВКонтакте</p>
+            <a
+              href="https://vk.com/im?sel=-234852553"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#d4870a] hover:bg-[#b87209] text-white font-oswald text-sm tracking-[0.15em] uppercase px-6 py-3 transition-colors duration-200 whitespace-nowrap"
+            >
+              Написать в ВК
+            </a>
           </div>
         </div>
       </section>

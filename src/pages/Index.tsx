@@ -244,14 +244,21 @@ export default function Index() {
               </p>
               <div className="space-y-5">
                 {[
-                  { icon: "Phone", text: "+7 (993) 503-98-59" },
-                  { icon: "MapPin", text: "Свердловская область" },
-                  { icon: "Clock", text: "Пн–Вс, 8:00–20:00" },
-                  { icon: "BadgeCheck", text: "Самозанятый · ИНН 661914015077" },
+                  { icon: "Phone", text: "+7 (993) 503-98-59", href: "tel:+79935039859" },
+                  { icon: "MapPin", text: "Свердловская область", href: null },
+                  { icon: "Clock", text: "Пн–Вс, 8:00–20:00", href: null },
+                  { icon: "BadgeCheck", text: "Самозанятый · ИНН 661914015077", href: null },
+                  { icon: "Users", text: "Группа ВКонтакте", href: "https://vk.ru/club234852553" },
                 ].map((c) => (
                   <div key={c.text} className="flex items-center gap-3">
                     <Icon name={c.icon} size={18} className="text-[#d4870a] shrink-0" />
-                    <span className="text-white/80 font-golos">{c.text}</span>
+                    {c.href ? (
+                      <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="text-white/80 font-golos hover:text-[#d4870a] transition-colors duration-200">
+                        {c.text}
+                      </a>
+                    ) : (
+                      <span className="text-white/80 font-golos">{c.text}</span>
+                    )}
                   </div>
                 ))}
               </div>

@@ -252,7 +252,7 @@ export default function Index() {
                 {[
                   { icon: "Phone", text: "+7 (993) 503-98-59", href: "tel:+79935039859" },
                   { icon: "MapPin", text: "Свердловская область", href: null },
-                  { icon: "Clock", text: "Пн–Вс, 8:00–20:00", href: null },
+                  { icon: "Clock", text: "Пн–Вс, 8:00–24:00", href: null },
                   { icon: "BadgeCheck", text: "Самозанятый · ИНН 661914015077", href: null },
                   { icon: "Users", text: "Группа ВКонтакте", href: "https://vk.ru/club234852553" },
                 ].map((c) => (

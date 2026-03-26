@@ -244,7 +244,7 @@ export default function Index() {
               </p>
               <div className="space-y-5">
                 {[
-                  { icon: "Phone", text: "+7 (999) 000-00-00" },
+                  { icon: "Phone", text: "+7 (993) 503-98-59" },
                   { icon: "MapPin", text: "Свердловская область" },
                   { icon: "Clock", text: "Пн–Вс, 8:00–20:00" },
                   { icon: "BadgeCheck", text: "Самозанятый · ИНН 661914015077" },

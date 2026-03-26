@@ -70,7 +70,7 @@ export default function Cleaning() {
     setLoading(true);
     setError("");
     try {
-      const func2url = await import("@/../func2url.json");
+      const func2url = await import("../../backend/func2url.json");
       const url = func2url["send-application"];
       const res = await fetch(url, {
         method: "POST",
